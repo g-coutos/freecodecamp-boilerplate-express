@@ -20,10 +20,17 @@ app.get('/', function(req, res) {
 });
 */
 
+/*
+exercise 4
 app.get('/public', function(req, res) {
   res.sendFile('/views/index.html', { root: __dirname });
 });
 
 app.use('/public', express.static(`${__dirname}/public`));
+*/
+
+app.get('/json', function(req, res) {
+  res.json({ "message": "Hello json" });
+});
 
 module.exports = app;
