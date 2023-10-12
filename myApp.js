@@ -1,6 +1,8 @@
 let express = require('express');
 let app = express();
 
+require('dotenv').config()
+
 /*
 ex. 1
 console.log('Hello World');
@@ -21,7 +23,7 @@ app.get('/', function(req, res) {
 */
 
 /*
-exercise 4
+ex. 4
 app.get('/public', function(req, res) {
   res.sendFile('/views/index.html', { root: __dirname });
 });
@@ -29,8 +31,25 @@ app.get('/public', function(req, res) {
 app.use('/public', express.static(`${__dirname}/public`));
 */
 
+/*
+ex. 5
 app.get('/json', function(req, res) {
   res.json({ "message": "Hello json" });
+});
+*/
+
+function uppercase(env) {
+  let message = 'Hello json';
+
+  if (env == 'uppercase') {
+    return message.toUpperCase();
+  } 
+
+  return message;
+}
+
+app.get('/json', function(req, res) {
+  res.json({ message: uppercase(process.env.MESSAGE_STYLE) });
 });
 
 module.exports = app;
