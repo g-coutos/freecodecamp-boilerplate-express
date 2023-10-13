@@ -55,6 +55,8 @@ app.get('/json', function(req, res) {
 });
 */
 
+/*
+ex. 7
 app.get('/json', function(req, res, next) {
   let message = `${req.method} ${req.path} - ${req.ip}`;
 
@@ -62,5 +64,20 @@ app.get('/json', function(req, res, next) {
 
   next();
 });
+*/
+
+app.get(
+  '/now', 
+  function(req, res, next) {
+    req.time = new Date().toString();
+
+    next();
+  },
+
+  function(req, res) {
+    res.json({ time: req.time });
+  }  
+);
+
 
 module.exports = app;
