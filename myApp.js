@@ -89,16 +89,9 @@ app.get('/:word/echo', function(req, res) {
 });
 */
 
-app.route('/name')
-  .get(
-    function(req, res, next) {
-      req.name = `${req.query.first} ${req.query.last}`
 
-      next();
-    }
-  )
-  .post(function(req, res) {
-    res.json({name: req.name});
-  });
+app.get('/name',  function(req, res) {
+  res.json({ name: `${req.query.first} ${req.query.last}` });
+});
 
 module.exports = app;
