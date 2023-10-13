@@ -66,6 +66,8 @@ app.get('/json', function(req, res, next) {
 });
 */
 
+/*
+ex. 8
 app.get(
   '/now', 
   function(req, res, next) {
@@ -78,6 +80,12 @@ app.get(
     res.json({ time: req.time });
   }  
 );
+*/
+
+app.get('/:word/echo', function(req, res) {
+  res.json({ echo: req.params.word });
+});
+
 
 
 module.exports = app;
