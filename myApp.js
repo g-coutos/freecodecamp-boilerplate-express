@@ -89,10 +89,6 @@ app.get('/:word/echo', function(req, res) {
 });
 */
 
-app.get('/name?first=firstname&last=lastname', function(req, res) {
-
-});
-
 app.route('/name')
   .get(
     function(req, res, next) {
