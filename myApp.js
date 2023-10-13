@@ -38,6 +38,8 @@ app.get('/json', function(req, res) {
 });
 */
 
+/*
+ex. 6
 function uppercase(env) {
   let message = 'Hello json';
 
@@ -50,6 +52,15 @@ function uppercase(env) {
 
 app.get('/json', function(req, res) {
   res.json({ message: uppercase(process.env.MESSAGE_STYLE) });
+});
+*/
+
+app.get('/json', function(req, res, next) {
+  let message = `${req.method} ${req.path} - ${req.ip}`;
+
+  console.log(message);
+
+  next();
 });
 
 module.exports = app;
