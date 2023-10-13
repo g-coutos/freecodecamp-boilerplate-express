@@ -82,10 +82,27 @@ app.get(
 );
 */
 
+/*
+ex. 9
 app.get('/:word/echo', function(req, res) {
   res.json({ echo: req.params.word });
 });
+*/
 
+app.get('/name?first=firstname&last=lastname', function(req, res) {
 
+});
+
+app.route('/name')
+  .get(
+    function(req, res, next) {
+      req.name = `${req.query.first} ${req.query.last}`
+
+      next();
+    }
+  )
+  .post(function(req, res) {
+    res.json({name: req.name});
+  });
 
 module.exports = app;
