@@ -3,7 +3,7 @@ require('dotenv').config();
 let express = require('express');
 let app = express();
 
-let bodyParser = require('body-parser');
+let bp = require('body-parser');
 
 /*
 ex. 1
@@ -98,6 +98,26 @@ app.get('/name',  function(req, res) {
 });
 */
 
-app.use(bodyParser.urlencoded({ extended: false }));
+/*
+ex. 11
+app.use(bp.urlencoded({ extended: true }));
+*/
+
+app.get('/public', function(req, res) {
+  res.sendFile('/views/index.html', { root: __dirname });
+});
+
+app.use('/public', express.static(`${__dirname}/public`));
+
+app.use(bp.urlencoded({ extended: true }));
+
+app.route('/name')
+  .post(
+    function(req, res) {
+      req.name = `${req.body.first} ${req.body.last}`;
+
+      res.json({ name: req.name });
+    }
+  );
 
 module.exports = app;
