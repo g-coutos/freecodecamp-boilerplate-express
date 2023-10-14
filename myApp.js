@@ -1,7 +1,9 @@
+require('dotenv').config();
+
 let express = require('express');
 let app = express();
 
-require('dotenv').config()
+let bodyParser = require('body-parser');
 
 /*
 ex. 1
@@ -89,9 +91,13 @@ app.get('/:word/echo', function(req, res) {
 });
 */
 
-
+/*
+ex. 10
 app.get('/name',  function(req, res) {
   res.json({ name: `${req.query.first} ${req.query.last}` });
 });
+*/
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 module.exports = app;
